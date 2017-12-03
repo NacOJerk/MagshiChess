@@ -53,15 +53,28 @@ char* Game::serializeBoard() const
 	return chars;
 }
 
+bool checkPoint(string s)
+{
+	return ('a' <= s[0] && s[0] < 'h' && '1' <= s[1] && s[1] <= '8');
+}
+
 char* Game::movePlayer(string action)
 {
 	char* chars = new char[2];
 	chars[1] = '\0';
 	string origin = action.substr(0, 2);
 	string dest = action.substr(2, 2);
+	//0
+	//1
+	//2 a
+	//3 a
+	//4 a
+	//5 a
+	//6 a
+	//7 a
 	if (origin != dest)
 	{
-		if (true)//Check that the origin and dest are legal
+		if (checkPoint(origin) && checkPoint(dest))//Check that the origin and dest are legal
 		{
 			if (getBoard().getPiece(origin) != nullptr && getBoard().getPiece(origin)->getColor() == getTurn())
 			{
@@ -70,8 +83,18 @@ char* Game::movePlayer(string action)
 				{
 					if (getBoard().canMove(action))
 					{
-						//Check somehow if it will make it have a chess
-						//also move stuff
+						Piece* savyPicy = getBoard().movePiece(action);
+						if (getBoard().isThreating(getBoard().getKingLoc(getTurn()), getTurn()))
+						{ 
+							chars[0] = '4';
+							getBoard().movePiece(dest + origin);
+							getBoard().getPiece(dest) = savyPicy;
+						}
+						else
+						{
+							//Chess on other dude
+							delete savyPicy;
+						}
 					}
 					else
 					{

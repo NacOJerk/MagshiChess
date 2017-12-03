@@ -55,7 +55,7 @@ bool Board::isThreating(string loc, COLOR side)
 	{
 		for (int j = 0; j < 8 && threat; j++)
 		{
-			if (getPiece(getLoc(i, j))->getColor() != side)
+			if (getPiece(getLoc(i, j))->getColor() == side)
 			{
 				continue;
 			}
@@ -77,5 +77,5 @@ const Game& Board::getGame()
 
 Piece*& Board::getPiece(string loc)
 {
-	return (*this)[getNum(loc[0])][getNum(loc[1])];
+	return (*this)(getNum(loc[0]),getNum(loc[1]));
 }

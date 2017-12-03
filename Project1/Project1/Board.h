@@ -16,7 +16,8 @@ public:
 	Piece*& operator()(int x, int y);
 	Piece*& getPiece(string loc);
 	const Game& getGame();
-	bool isThreating(string loc, COLOR side);
+	bool isThreating(string loc, COLOR side);//Check if the other team is threating the location (the color you give is the one of the "king" or the tool you want to check if it is threatened)
+	string getKingLoc(COLOR c) const;
 private:
 	Game* _game;
 	Piece* _piece[8][8];
