@@ -17,11 +17,13 @@ class Game
 public:
 	Game();
 	~Game();
-	COLOR getTurn();
-	const Board& getBoard();
-	char* serializeBoard();
+	COLOR getTurn() const;
+	Board& getBoard() const;
+	char* serializeBoard() const;
 	char* movePlayer(string action);
 private:
 	COLOR _turn;
 	Board* _board;
 };
+
+int getNum(char s);

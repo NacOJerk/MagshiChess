@@ -10,13 +10,13 @@ class Board
 public:
 	Board(Game* game);
 	~Board();
-	bool canMove(string mov) const;
-	void deletePiece(string loc) const;
-	void movePiece(string mov) const;
-	Piece*** getPieces() const;
-	Piece* getPiece(string loc) const;
+	bool canMove(string mov);
+	void deletePiece(string loc);
+	Piece* movePiece(string mov);
+	Piece*& operator()(int x, int y);
+	Piece*& getPiece(string loc);
 	const Game& getGame();
 private:
 	Game* _game;
-	Piece*** _piece;
+	Piece* _piece[8][8];
 };

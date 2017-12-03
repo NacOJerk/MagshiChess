@@ -10,25 +10,37 @@ Game::~Game()
 	delete _board;
 }
 
-COLOR Game::getTurn()
+COLOR Game::getTurn() const
 {
 	return _turn;
 }
 
-const Board& Game::getBoard()
+Board& Game::getBoard() const
 {
 	return *_board;
 }
 
-char* Game::serializeBoard()
+int getNum(char s)
 {
-	Piece* pieces[][8] = (*_board).getPieces();
+	if ('a' <= s && s <= 'z')
+	{
+		return s - 'a';
+	}
+	if ('A' <= s && s <= 'Z')
+	{
+		return s - 'Z';
+	}
+	return s - '1';
+}
+
+char* Game::serializeBoard() const
+{
 	string str("");
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			str += pieces[i][j]->getSymbol();
+			str += (getBoard()(i, j) == nullptr) ? '#' : getBoard()(i, j)->getSymbol();
 		}
 	}
 	str += _turn == WHITE ? '0' : '1';
