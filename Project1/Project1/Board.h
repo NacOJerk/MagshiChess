@@ -16,6 +16,7 @@ public:
 	Piece*& operator()(int x, int y);
 	Piece*& getPiece(string loc);
 	const Game& getGame();
+	bool isThreating(string loc, COLOR side);
 private:
 	Game* _game;
 	Piece* _piece[8][8];

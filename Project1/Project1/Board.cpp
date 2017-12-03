@@ -42,9 +42,32 @@ Piece* Board::movePiece(string mov)
 	return piece;
 }
 
+string getLoc(int row, int colum)
+{
+	char letter = colum + 'a';
+	return string(&letter) + (char)(row + '1');
+}
+
+bool Board::isThreating(string loc, COLOR side)
+{
+	bool threat = false;
+	for (int i = 0; i < 8 && threat; i++)
+	{
+		for (int j = 0; j < 8 && threat; j++)
+		{
+			if (getPiece(getLoc(i, j))->getColor() != side)
+			{
+				continue;
+			}
+			threat = canMove(getLoc(i, j) + loc);
+		}
+	}
+	return threat;
+}
+
 Piece*& Board::operator()(int x, int y)
 {
-	return _piece[x][y];
+	return _piece[y][x];
 }
 
 const Game& Board::getGame()
@@ -54,5 +77,5 @@ const Game& Board::getGame()
 
 Piece*& Board::getPiece(string loc)
 {
-	return _piece[getNum(loc[0])][getNum(loc[1])];
+	return (*this)[getNum(loc[0])][getNum(loc[1])];
 }
