@@ -3,8 +3,6 @@
 
 class Knight : public Piece
 {
-private:
-	bool checkPoint(string s);
 public:
 	Knight(Board* board, COLOR side);
 	bool canMove(string s);
