@@ -111,20 +111,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\MagshiChess1\MagshiChess\King.h" />
-    <ClInclude Include="..\..\..\MagshiChess1\MagshiChess\Knight.h" />
-    <ClInclude Include="..\..\..\MagshiChess1\MagshiChess\Pawn.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Piece.h" />
+    <ClInclude Include="Rook.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\MagshiChess1\MagshiChess\King.cpp" />
-    <ClCompile Include="..\..\..\MagshiChess1\MagshiChess\Knight.cpp" />
-    <ClCompile Include="..\..\..\MagshiChess1\MagshiChess\Pawn.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Piece.cpp" />
+    <ClCompile Include="Rook.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
