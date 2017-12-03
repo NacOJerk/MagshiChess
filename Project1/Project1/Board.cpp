@@ -51,8 +51,8 @@ string getLoc(int row, int colum)
 bool Board::isThreating(string loc, COLOR side)
 {
 	bool threat = false;
-	for (int i = 0; i < 8 && threat; i++)
-	{
+	for (int i = 0; i < 8 * 8 && !threat; i++, threat = (getPiece(getLoc(i / 8, i % 8))->getColor() == side) ? threat : canMove(getLoc(i / 8, i % 8) + loc));
+	/*{
 		for (int j = 0; j < 8 && threat; j++)
 		{
 			if (getPiece(getLoc(i, j))->getColor() == side)
@@ -61,7 +61,7 @@ bool Board::isThreating(string loc, COLOR side)
 			}
 			threat = canMove(getLoc(i, j) + loc);
 		}
-	}
+	}*/
 	return threat;
 }
 
