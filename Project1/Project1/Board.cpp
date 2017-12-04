@@ -67,7 +67,7 @@ bool Board::isThreating(string loc, COLOR side)
 
 Piece*& Board::operator()(int x, int y)
 {
-	return _piece[y][x];
+	return _piece[7-y][x];
 }
 
 const Game& Board::getGame()
