@@ -14,6 +14,8 @@ public:
 	COLOR getColor() const;
 	TYPE getType() const;
 protected:
+	bool canCastle(string cor); //checks if the player can make a castling move
+
 	char _codeName;
 private:
 	COLOR _color;
