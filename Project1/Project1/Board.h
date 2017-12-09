@@ -1,9 +1,16 @@
 #pragma once
+#include <string>
 #include "Game.h"
 #include "Piece.h"
 
+using std::string;
+
 class Piece;
 class Game;
+
+typedef enum COLOR COLOR;
+typedef enum TYPE TYPE;
+
 
 class Board
 {
