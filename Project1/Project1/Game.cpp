@@ -94,7 +94,6 @@ char* Game::movePlayer(string action)
 						{
 							savyPicy ? delete savyPicy : 1;
 							getBoard().getPiece(dest)->move(dest);
-
 							//Chess on other dude
 							
 						}
