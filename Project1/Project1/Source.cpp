@@ -1,12 +1,13 @@
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
+#include "Game.h"
 
 using namespace std;
+
 void main()
 {
 	srand(time_t(NULL));
-
 	
 	Pipe p;
 	bool isConnect = p.connect();
@@ -31,25 +32,30 @@ void main()
 		}
 	}
 	
+	Game* game = new Game();
 
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
+	char* boardLoc = game->serializeBoard();
+
+	strcpy_s(msgToGraphics, boardLoc); // just example...
 	
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
+	delete boardLoc;
+
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
-
+	char* response = nullptr;
 	while (msgFromGraphics != "quit")
 	{
-		// should handle the string the sent from graphics
-		// according the protocol. Ex: e2e4           (move e2 to e4)
+		
+		response = game->movePlayer(msgFromGraphics);
 		
 		// YOUR CODE
-		strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+		strcpy_s(msgToGraphics, response); // msgToGraphics should contain the result of the operation
 
 
 
@@ -62,4 +68,5 @@ void main()
 	}
 
 	p.close();
+	delete game;
 }
