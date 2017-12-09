@@ -1,4 +1,11 @@
 #include "Board.h"
+#include "Pawn.h"
+#include "King.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "Queen.h"
+
 
 Board::Board(Game* game) : _game(game)
 {
