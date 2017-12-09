@@ -64,6 +64,7 @@ char* Game::movePlayer(string action)
 	chars[1] = '\0';
 	string origin = action.substr(0, 2);
 	string dest = action.substr(2, 2);
+	COLOR oppisiteSide = getTurn() == WHITE ? BLACK : WHITE;
 	//0
 	//1
 	//2 a
@@ -72,6 +73,7 @@ char* Game::movePlayer(string action)
 	//5 a
 	//6 a
 	//7 a
+	//8
 	if (origin != dest)
 	{
 		if (checkPoint(origin) && checkPoint(dest))//Check that the origin and dest are legal
@@ -94,8 +96,15 @@ char* Game::movePlayer(string action)
 						{
 							savyPicy ? delete savyPicy : 1;
 							getBoard().getPiece(dest)->move(dest);
-							//Chess on other dude
-							
+							if (getBoard().isThreating(getBoard().getKingLoc(oppisiteSide), oppisiteSide))//Chess
+							{
+								//ADD TEST HERE FOR CHESSMATES
+								chars[0] = '1';
+							}
+							else
+							{
+								chars[0] = '0';
+							}
 						}
 					}
 					else
