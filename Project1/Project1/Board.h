@@ -21,4 +21,6 @@ public:
 private:
 	Game* _game;
 	Piece* _piece[8][8];
+	string _whiteKingLoc;
+	string _blackKingLoc;
 };

@@ -39,6 +39,17 @@ Piece* Board::movePiece(string mov)
 	Piece* piece = getPiece(mov.substr(2, 2));
 	getPiece(mov.substr(2, 2)) = getPiece(mov.substr(0, 2));
 	getPiece(mov.substr(0, 2)) = nullptr;
+	if (getPiece(mov.substr(2, 2))->getType() == KING)
+	{
+		if (getPiece(mov.substr(2, 2))->getColor() == WHITE)
+		{
+			_whiteKingLoc = mov.substr(2, 2);
+		}
+		else if(getPiece(mov.substr(2, 2))->getColor() == BLACK)
+		{
+			_blackKingLoc = mov.substr(2, 2);
+		}
+	}
 	return piece;
 }
 
@@ -78,4 +89,9 @@ const Game& Board::getGame()
 Piece*& Board::getPiece(string loc)
 {
 	return (*this)(getNum(loc[0]),getNum(loc[1]));
+}
+
+string Board::getKingLoc(COLOR c) const
+{
+	return c == WHITE ? _whiteKingLoc : _blackKingLoc;
 }

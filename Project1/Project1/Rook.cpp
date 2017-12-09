@@ -81,10 +81,19 @@ bool Rook::canMove(string move)
 			}
 		}
 	}
+	else
+	{
+		canMove = false;
+	}
 	return canMove;
 }
 
 bool Rook::hasMoved()
 {
 	return this->_moved;
+}
+
+void Rook::move(string s)
+{
+	_moved = true;
 }
