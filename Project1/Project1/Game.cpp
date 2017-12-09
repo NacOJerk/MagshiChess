@@ -92,8 +92,9 @@ char* Game::movePlayer(string action)
 						}
 						else
 						{
+							savyPicy ? delete savyPicy : 1;
 							//Chess on other dude
-							delete savyPicy;
+							
 						}
 					}
 					else

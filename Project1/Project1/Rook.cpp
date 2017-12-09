@@ -48,34 +48,37 @@ bool Rook::canMove(string move)
 	}
 	else if (source[1] == dest[1])//same row
 	{
-		for (int i = 1; i < (source[0] - dest[0]) && canMove; i++)//Loop to check each location
+		if (source[0] < dest[0])//Moving right
 		{
-			string location = string(&dest[1]) + (char)(source[0] - i);//Location as string
-			if (board.getPiece(location) == nullptr)//If location is empty move on
-				continue;
-			if (board.getPiece(location)->getColor() == getColor())//If location is equal to my color you cant move any way
+			for (int i = 1; i < (dest[0] - source[0]) && canMove; i++)
 			{
-				canMove = false;
-				continue;
+				string location = string(&source[0] + i) + (char)(source[1]);//Location as string
+				if (board.getPiece(location) == nullptr)
+					continue;
+				if (board.getPiece(location)->getColor() == getColor())//If location is equal to my color you cant move any way
+				{
+					canMove = false;
+					continue;
+				}
+				if (location != dest)//If the other color is equal to me it works
+					canMove = false;
 			}
-			if (location != dest)//If the other color is equal to me it works
-				canMove = false;
 		}
-	}
-	else
-	{
-		for (int i = 1; i < (dest[0] - source[0]) && canMove; i++)//Loop to check each location
+		else if (source[0] > dest[0])//Moving left
 		{
-			string location = string(&dest[1]) + (char)(i + source[0]);//Location as string
-			if (board.getPiece(location) == nullptr)//If location is empty move on
-				continue;
-			if (board.getPiece(location)->getColor() == getColor())//If location is equal to my color you cant move any way
+			for (int i = 1; i < (source[0] - dest[0]) && canMove; i++)
 			{
-				canMove = false;
-				continue;
+				string location = string(&source[0] - i) + (char)(source[1]);//Location as string
+				if (board.getPiece(location) == nullptr)
+					continue;
+				if (board.getPiece(location)->getColor() == getColor())//If location is equal to my color you cant move any way
+				{
+					canMove = false;
+					continue;
+				}
+				if (location != dest)//If the other color is equal to me it works
+					canMove = false;
 			}
-			if (location != dest)//If the other color is equal to me it works
-				canMove = false;
 		}
 	}
 	return canMove;
