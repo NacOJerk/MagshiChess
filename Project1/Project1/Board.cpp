@@ -9,6 +9,35 @@ Board::Board(Game* game) : _game(game)
 			(*this)(i, j) = nullptr;
 		}
 	}
+	//Rooks
+	getPiece("a8") = new Rook(this, BLACK);
+	getPiece("h8") = new Rook(this, BLACK);
+	getPiece("a1") = new Rook(this, WHITE);
+	getPiece("h1") = new Rook(this, WHITE);
+	//Knights
+	getPiece("b8") = new Knight(this, BLACK);
+	getPiece("g8") = new Knight(this, BLACK);
+	getPiece("b1") = new Knight(this, WHITE);
+	getPiece("g1") = new Knight(this, WHITE);
+	//Bishops
+	getPiece("c8") = new Bishop(this, BLACK);
+	getPiece("f8") = new Bishop(this, BLACK);
+	getPiece("c1") = new Bishop(this, WHITE);
+	getPiece("f1") = new Bishop(this, WHITE);
+	//The Black Royal Family
+	getPiece("d8") = new King(this, BLACK);
+	_blackKingLoc = "d8";
+	getPiece("e8") = new Queen(this, BLACK);
+	//The White Royal Family
+	getPiece("d1") = new King(this, WHITE);
+	_whiteKingLoc = "d1";
+	getPiece("e1") = new Queen(this, WHITE);
+	//Creating the pawns
+	for (char c = 'a'; c <= 'h'; c++)
+	{
+		getPiece((string(&c) + '7')) = new Pawn(this, BLACK);
+		getPiece((string(&c) + '2')) = new Pawn(this, WHITE);
+	}
 }
 
 Board::~Board()

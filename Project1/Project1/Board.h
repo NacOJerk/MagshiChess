@@ -1,9 +1,23 @@
 #pragma once
 #include "Game.h"
 #include "Piece.h"
+#include "Pawn.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "Rook.h"
+#include "Queen.h"
+#include "King.h"
 
 class Piece;
 class Game;
+class Pawn;
+class Rook;
+class Knight;
+class Bishop;
+class Rook;
+class Queen;
+class King;
 
 class Board
 {
