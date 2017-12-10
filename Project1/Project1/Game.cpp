@@ -56,7 +56,7 @@ char* Game::serializeBoard() const
 
 bool checkPoint(string s)
 {
-	return ('a' <= s[0] && s[0] < 'h' && '1' <= s[1] && s[1] <= '8');
+	return ('a' <= s[0] && s[0] <= 'h' && '1' <= s[1] && s[1] <= '8');
 }
 
 char* Game::movePlayer(string action)
@@ -66,8 +66,8 @@ char* Game::movePlayer(string action)
 	string origin = action.substr(0, 2);
 	string dest = action.substr(2, 2);
 	COLOR oppisiteSide = getTurn() == WHITE ? BLACK : WHITE;
-	//0
-	//1
+	//0 a
+	//1 a
 	//2 a
 	//3 a
 	//4 a
@@ -87,7 +87,7 @@ char* Game::movePlayer(string action)
 					if (getBoard()->canMove(action))
 					{
 						Piece* savyPicy = getBoard()->movePiece(action);
-						if (false && getBoard()->isThreating(getBoard()->getKingLoc(getTurn()), getTurn()))
+						if (getBoard()->isThreating(getBoard()->getKingLoc(getTurn()), getTurn()))
 						{ 
 							chars[0] = '4';
 							getBoard()->movePiece(dest + origin);
@@ -100,7 +100,7 @@ char* Game::movePlayer(string action)
 							
 							if (getBoard()->isThreating(getBoard()->getKingLoc(oppisiteSide), oppisiteSide))//Chess
 							{
-								//ADD TEST HERE FOR CHESSMATES
+								//ADD TEST HERE FOR CHECKMATES
 								chars[0] = '1';
 							}
 							else

@@ -102,7 +102,7 @@ string getLoc(int row, int colum)
 bool Board::isThreating(string loc, COLOR side)
 {
 	bool threat = false;
-	for (int i = 0; i < 8 * 8 && !threat; i++, threat = (getPiece(getLoc(i / 8, i % 8)) != nullptr && getPiece(getLoc(i / 8, i % 8))->getColor() == side) ? threat : canMove(getLoc(i / 8, i % 8) + loc));
+	for (int i = 0; i < 8 * 8 && !threat; threat = (getPiece(getLoc(i / 8, i % 8)) != nullptr && getPiece(getLoc(i / 8, i % 8))->getColor() == side) ? threat : canMove(getLoc(i / 8, i % 8) + loc), i++);
 	/*{
 		for (int j = 0; j < 8 && threat; j++)
 		{
