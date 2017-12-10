@@ -6,53 +6,20 @@ Pawn::Pawn(Board* board, COLOR side) : Piece(board, side, PAWN), _moved(false)
 
 }
 
-bool Pawn::canMove(string s)
+bool Pawn::canMove(string move)
 {
-	if (abs(s[0] - s[2]) > 1 || s[3] - s[1] > _moved ? 1 : 2)
-	{
-		return false;
-	}
-
-	Board b = getBoard();
-	Piece* p = &b.getPiece("" + s[2] + s[3]);
-	if (s[3] - s[1] == 2)
-	{
-		p = &b.getPiece("" + s[2] + (char)(s[3] - 1));
-		if (p != nullptr)
-		{
-			return false;
-		}
-	}
-	p = &b.getPiece("" + s[2] + s[3]);
-	if (((p == nullptr || p->getColor() == getColor()) && s[0] != s[2]) || (p != nullptr && s[0] == s[2]))
-	{
-		return false;
-	}
-
-	return true;
+	Board board = getBoard();
+	string source = move.substr(0, 2);
+	string dest = move.substr(2, 2);
+	return dest[0] == source[0] && (dest[0] - source[0] == 1);
 }
 
 void Pawn::move(string s)
 {
-	if (canMove(s))
-	{
-		Board b = getBoard();
-		b.movePiece(s);
 		_moved = true;
-		_threat = isThreating();
-	}
 }
 
 bool Pawn::hasMoved()
 {
 	return _moved;
-}
-
-bool Pawn::checkPoint(string s)
-{
-	if (s[0] < 'a' || s[0] > 'h' || s[1] < '1' || s[1] > '8')
-	{
-		return false;
-	}
-	return true;
 }

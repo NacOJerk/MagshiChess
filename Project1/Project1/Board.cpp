@@ -1,4 +1,11 @@
 #include "Board.h"
+#include "Pawn.h"
+#include "King.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "Queen.h"
+
 
 Board::Board(Game* game) : _game(game)
 {
@@ -35,8 +42,8 @@ Board::Board(Game* game) : _game(game)
 	//Creating the pawns
 	for (char c = 'a'; c <= 'h'; c++)
 	{
-		getPiece((string(&c) + '7')) = new Pawn(this, BLACK);
-		getPiece((string(&c) + '2')) = new Pawn(this, WHITE);
+		getPiece((string() + c + '7')) = new Pawn(this, BLACK);
+		getPiece((string() + c + '2')) = new Pawn(this, WHITE);
 	}
 }
 
@@ -53,7 +60,8 @@ Board::~Board()
 
 bool Board::canMove(string mov)
 {
-	return (*this)(getNum(mov[0]), getNum(mov[1]))->canMove(mov);
+
+	return (*this)(getNum(mov[0]), getNum(mov[1])) ? (*this)(getNum(mov[0]), getNum(mov[1]))->canMove(mov) : false;
 }
 
 
@@ -85,13 +93,13 @@ Piece* Board::movePiece(string mov)
 string getLoc(int row, int colum)
 {
 	char letter = colum + 'a';
-	return string(&letter) + (char)(row + '1');
+	return string() + letter + (char)(row + '1');
 }
 
 bool Board::isThreating(string loc, COLOR side)
 {
 	bool threat = false;
-	for (int i = 0; i < 8 * 8 && !threat; i++, threat = (getPiece(getLoc(i / 8, i % 8))->getColor() == side) ? threat : canMove(getLoc(i / 8, i % 8) + loc));
+	for (int i = 0; i < 8 * 8 && !threat; i++, threat = (getPiece(getLoc(i / 8, i % 8)) != nullptr && getPiece(getLoc(i / 8, i % 8))->getColor() == side) ? threat : canMove(getLoc(i / 8, i % 8) + loc));
 	/*{
 		for (int j = 0; j < 8 && threat; j++)
 		{

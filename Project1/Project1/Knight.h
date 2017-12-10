@@ -6,5 +6,4 @@ class Knight : public Piece
 public:
 	Knight(Board* board, COLOR side);
 	bool canMove(string s);
-	void move(string);
 };

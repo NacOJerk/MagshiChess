@@ -20,7 +20,7 @@ bool Bishop::canMove(string move)
 		for (int i = 1; i < abs(diffrentX); i++)
 		{
 			string location = //Creating the location as a string
-				string(&source[0] + (diffrentX > 0 ? i : -i)) +
+				string() + (&source[0] + (diffrentX > 0 ? i : -i)) +
 				(char)(source[1] + (diffrentY > 0 ? i : -i));
 			if (board.getPiece(location) == nullptr)
 				continue;

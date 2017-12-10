@@ -1,7 +1,13 @@
 #pragma once
 #include "Board.h"
+#include <string>
+
+using std::string;
 
 class Board;
+
+typedef enum COLOR COLOR;
+typedef enum TYPE TYPE;
 
 class Piece
 {

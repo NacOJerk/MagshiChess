@@ -36,11 +36,12 @@ int getNum(char s)
 char* Game::serializeBoard() const
 {
 	string str("");
-	for (int i = 0; i < 8; i++)
+	for (char a = '8'; a >= '1'; a--)
 	{
-		for (int j = 0; j < 8; j++)
+		for (char j = 'a';j <= 'h'; j++)
 		{
-			str += (getBoard()(i, j) == nullptr) ? '#' : getBoard()(i, j)->getSymbol();
+			string loc = string() + j + a;
+			str += (getBoard().getPiece((loc)) == nullptr) ? '#' : getBoard().getPiece(loc)->getSymbol();
 		}
 	}
 	str += _turn == WHITE ? '0' : '1';
@@ -49,7 +50,7 @@ char* Game::serializeBoard() const
 	{
 		chars[i] = str[i];
 	}
-	chars[str.size() + 1] = '\0';
+	chars[str.size()] = '\0';
 	return chars;
 }
 
@@ -96,6 +97,7 @@ char* Game::movePlayer(string action)
 						{
 							savyPicy ? delete savyPicy : 1;
 							getBoard().getPiece(dest)->move(dest);
+							
 							if (getBoard().isThreating(getBoard().getKingLoc(oppisiteSide), oppisiteSide))//Chess
 							{
 								//ADD TEST HERE FOR CHESSMATES
@@ -105,6 +107,7 @@ char* Game::movePlayer(string action)
 							{
 								chars[0] = '0';
 							}
+							_turn = _turn == WHITE ? BLACK : WHITE;
 						}
 					}
 					else
