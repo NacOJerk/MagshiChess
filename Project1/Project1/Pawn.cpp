@@ -8,10 +8,10 @@ Pawn::Pawn(Board* board, COLOR side) : Piece(board, side, PAWN), _moved(false)
 
 bool Pawn::canMove(string move)
 {
-	Board board = getBoard();
+	Board* board = getBoard();
 	string source = move.substr(0, 2);
 	string dest = move.substr(2, 2);
-	return dest[0] == source[0] && (dest[0] - source[0] == 1);
+	return !getColor();
 }
 
 void Pawn::move(string s)

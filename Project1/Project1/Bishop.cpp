@@ -9,7 +9,7 @@ Bishop::Bishop(Board* board, COLOR side) : Piece(board, side, BISHOP)
 
 bool Bishop::canMove(string move)
 {
-	Board board = getBoard();
+	Board* board = getBoard();
 	string source = move.substr(0, 2);
 	string dest = move.substr(2, 2);
 	int diffrentX = dest[0] - source[0];
@@ -22,9 +22,9 @@ bool Bishop::canMove(string move)
 			string location = //Creating the location as a string
 				string() + (&source[0] + (diffrentX > 0 ? i : -i)) +
 				(char)(source[1] + (diffrentY > 0 ? i : -i));
-			if (board.getPiece(location) == nullptr)
+			if (board->getPiece(location) == nullptr)
 				continue;
-			if (board.getPiece(location)->getColor() == getColor())//If location is equal to my color you cant move any way
+			if (board->getPiece(location)->getColor() == getColor())//If location is equal to my color you cant move any way
 			{
 				canMove = false;
 				continue;

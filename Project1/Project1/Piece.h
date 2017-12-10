@@ -16,7 +16,7 @@ public:
 	virtual bool canMove(string) = 0;
 	virtual void move(string);
 	char getSymbol() const;
-	Board& getBoard();
+	Board* getBoard();
 	COLOR getColor() const;
 	TYPE getType() const;
 protected:

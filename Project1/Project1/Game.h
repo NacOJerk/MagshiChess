@@ -18,7 +18,7 @@ public:
 	Game();
 	~Game();
 	COLOR getTurn() const;
-	Board& getBoard() const;
+	Board* getBoard() const;
 	char* serializeBoard() const;
 	char* movePlayer(string action);
 private:

@@ -22,7 +22,7 @@ void main()
 		if (ans == "0")
 		{
 			cout << "trying connect again.." << endl;
-			Sleep(5000);
+			Sleep(500);
 			isConnect = p.connect();
 		}
 		else 

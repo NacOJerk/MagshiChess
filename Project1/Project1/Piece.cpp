@@ -1,4 +1,6 @@
 #include "Piece.h"
+#include "King.h"
+#include "Rook.h"
 
 Piece::Piece(Board* board, COLOR side, TYPE type) : _board(board), _color(side), _type(type)
 {
@@ -15,9 +17,9 @@ char Piece::getSymbol() const
 	return _codeName;
 }
 
-Board& Piece::getBoard()
+Board* Piece::getBoard()
 {
-	return *_board;
+	return _board;
 }
 
 COLOR Piece::getColor() const

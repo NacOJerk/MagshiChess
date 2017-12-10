@@ -15,9 +15,9 @@ COLOR Game::getTurn() const
 	return _turn;
 }
 
-Board& Game::getBoard() const
+Board* Game::getBoard() const
 {
-	return *_board;
+	return _board;
 }
 
 int getNum(char s)
@@ -41,7 +41,7 @@ char* Game::serializeBoard() const
 		for (char j = 'a';j <= 'h'; j++)
 		{
 			string loc = string() + j + a;
-			str += (getBoard().getPiece((loc)) == nullptr) ? '#' : getBoard().getPiece(loc)->getSymbol();
+			str += (getBoard()->getPiece((loc)) == nullptr) ? '#' : getBoard()->getPiece(loc)->getSymbol();
 		}
 	}
 	str += _turn == WHITE ? '0' : '1';
@@ -79,26 +79,26 @@ char* Game::movePlayer(string action)
 	{
 		if (checkPoint(origin) && checkPoint(dest))//Check that the origin and dest are legal
 		{
-			if (getBoard().getPiece(origin) != nullptr && getBoard().getPiece(origin)->getColor() == getTurn())
+			if (getBoard()->getPiece(origin) != nullptr && getBoard()->getPiece(origin)->getColor() == getTurn())
 			{
-				bool hasHisPlayerThere = getBoard().getPiece(dest) != nullptr && getBoard().getPiece(dest)->getColor() == getTurn();
+				bool hasHisPlayerThere = getBoard()->getPiece(dest) != nullptr && getBoard()->getPiece(dest)->getColor() == getTurn();
 				if (!hasHisPlayerThere)
 				{
-					if (getBoard().canMove(action))
+					if (getBoard()->canMove(action))
 					{
-						Piece* savyPicy = getBoard().movePiece(action);
-						if (getBoard().isThreating(getBoard().getKingLoc(getTurn()), getTurn()))
+						Piece* savyPicy = getBoard()->movePiece(action);
+						if (false && getBoard()->isThreating(getBoard()->getKingLoc(getTurn()), getTurn()))
 						{ 
 							chars[0] = '4';
-							getBoard().movePiece(dest + origin);
-							getBoard().getPiece(dest) = savyPicy;
+							getBoard()->movePiece(dest + origin);
+							getBoard()->getPiece(dest) = savyPicy;
 						}
 						else
 						{
 							savyPicy ? delete savyPicy : 1;
-							getBoard().getPiece(dest)->move(dest);
+							getBoard()->getPiece(dest)->move(dest);
 							
-							if (getBoard().isThreating(getBoard().getKingLoc(oppisiteSide), oppisiteSide))//Chess
+							if (getBoard()->isThreating(getBoard()->getKingLoc(oppisiteSide), oppisiteSide))//Chess
 							{
 								//ADD TEST HERE FOR CHESSMATES
 								chars[0] = '1';

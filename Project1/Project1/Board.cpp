@@ -5,7 +5,7 @@
 #include "Knight.h"
 #include "Bishop.h"
 #include "Queen.h"
-
+#include <iostream>
 
 Board::Board(Game* game) : _game(game)
 {
@@ -49,6 +49,7 @@ Board::Board(Game* game) : _game(game)
 
 Board::~Board()
 {
+	std::cout << "hey";
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -60,8 +61,10 @@ Board::~Board()
 
 bool Board::canMove(string mov)
 {
-
-	return (*this)(getNum(mov[0]), getNum(mov[1])) ? (*this)(getNum(mov[0]), getNum(mov[1]))->canMove(mov) : false;
+	if (getPiece(mov))
+		return getPiece(mov)->canMove(mov);
+	else
+		return false;
 }
 
 

@@ -12,8 +12,8 @@ bool King::canMove(string s)
 		return false;
 	}
 	
-	Board b = getBoard();
-	Piece* p = b.getPiece("" + s[2] + s[3]);
+	Board* b = getBoard();
+	Piece* p = b->getPiece("" + s[2] + s[3]);
 	if (p != nullptr && p->getColor() == getColor())
 	{
 		return false;
